@@ -1,0 +1,173 @@
+/* 1. FIRST: All @import statements must be at the top */
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* 2. THEN: @theme definitions */
+@theme {
+  --color-salon-pink: #ff6b8b;
+  --color-salon-dark: #2d2d2d;
+  --color-salon-gold: #d4af37;
+  --color-salon-rose: #ff9eb5;
+  --color-salon-light: #fff5f7;
+  
+  --font-playfair: 'Playfair Display', serif;
+  --font-poppins: 'Poppins', sans-serif;
+  
+  --animate-float: float 3s ease-in-out infinite;
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+/* 3. THEN: All other CSS (layers, base styles, components, etc.) */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-poppins);
+    color: #374151;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair);
+    font-weight: bold;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    background-color: var(--color-salon-pink);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-weight: 600;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #ff809c;
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(255, 107, 139, 0.3);
+  }
+  
+  .btn-outline {
+    border: 2px solid var(--color-salon-pink);
+    color: var(--color-salon-pink);
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-weight: 600;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  .btn-outline:hover {
+    background-color: var(--color-salon-pink);
+    color: white;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 3rem;
+    }
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-salon-pink), var(--color-salon-rose));
+    border-radius: 3px;
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #6b7280;
+    max-width: 42rem;
+    margin: 0 auto 3rem auto;
+  }
+  
+  .service-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+  }
+  
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-salon-pink), var(--color-salon-rose));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+/* 4. Finally: Custom scrollbar and other global styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-salon-pink);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff809c;
+}
