@@ -1,83 +1,119 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("#home");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
-    { href: '#home', label: 'Home' },
-    { href: '#services', label: 'Services' },
-    { href: '#about', label: 'About' },
-    { href: '#gallery', label: 'Gallery' },
-    { href: '#testimonials', label: 'Testimonials' },
-    { href: '#contact', label: 'Contact' },
-  ]
+    { href: "#home", label: "Home" },
+    { href: "#services", label: "Services" },
+    { href: "#about", label: "About" },
+    { href: "#gallery", label: "Gallery" },
+    { href: "#testimonials", label: "Testimonials" },
+    { href: "#contact", label: "Contact" },
+  ];
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50 transition-all duration-300">
-      <div className="container mx-auto px-4 md:px-6">
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/70 backdrop-blur-lg shadow-sm border-b border-gray-100"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-salon-pink rounded-full flex items-center justify-center animate-pulse-slow">
-              <span className="text-white text-2xl">✨</span>
+          <div className="flex items-center space-x-3 cursor-pointer">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 flex items-center justify-center text-white text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
+              ✨
             </div>
-            <h1 className="text-2xl font-playfair font-bold text-salon-dark">
-              Glamour <span className="text-salon-pink">Haven</span>
+            <h1 className="text-2xl font-bold tracking-wide">
+              Glamour <span className="text-pink-500">Haven</span>
             </h1>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-10">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="nav-link text-gray-700 hover:text-salon-pink transition-colors duration-300 font-medium"
+                onClick={() => setActive(link.href)}
+                className={`relative group font-medium transition ${
+                  active === link.href ? "text-pink-500" : "text-gray-700"
+                }`}
               >
                 {link.label}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-pink-500 transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
           </div>
 
-          {/* Book Now Button */}
-          <a href="#booking" className="hidden md:block btn-primary text-sm">
+          {/* CTA Button */}
+          <a
+            href="#booking"
+            className="hidden md:block px-5 py-2 rounded-full bg-pink-500 text-white font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+          >
             Book Now
           </a>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-gray-700 focus:outline-none"
+            className="md:hidden focus:outline-none"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            <div className="space-y-1">
+              <span className="block w-6 h-0.5 bg-gray-800"></span>
+              <span className="block w-6 h-0.5 bg-gray-800"></span>
+              <span className="block w-6 h-0.5 bg-gray-800"></span>
+            </div>
           </button>
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden pb-4 animate-slide-up">
-            <div className="flex flex-col space-y-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="nav-link text-gray-700 hover:text-salon-pink transition-colors py-2"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a href="#booking" className="btn-primary text-center text-sm" onClick={() => setIsMenuOpen(false)}>
-                Book Now
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ${
+            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="flex flex-col space-y-4 py-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => {
+                  setActive(link.href);
+                  setIsMenuOpen(false);
+                }}
+                className={`text-lg font-medium transition ${
+                  active === link.href ? "text-pink-500" : "text-gray-700"
+                } hover:text-pink-500`}
+              >
+                {link.label}
               </a>
-            </div>
+            ))}
+            <a
+              href="#booking"
+              onClick={() => setIsMenuOpen(false)}
+              className="mt-2 px-5 py-2 rounded-full bg-pink-500 text-white text-center font-medium shadow-md"
+            >
+              Book Now
+            </a>
           </div>
-        )}
+        </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
