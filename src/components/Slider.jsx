@@ -8,8 +8,7 @@ export default function Slider() {
   const prev = () =>
     setIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
-  const next = () =>
-    setIndex((prev) => (prev + 1) % slides.length);
+  const next = () => setIndex((prev) => (prev + 1) % slides.length);
 
   return (
     <div>
