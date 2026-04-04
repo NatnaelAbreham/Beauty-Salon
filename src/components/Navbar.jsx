@@ -27,7 +27,7 @@ const Navbar = () => {
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
           ? "bg-white/70 backdrop-blur-lg shadow-sm border-b border-gray-100"
-          : "bg-transparent"
+          : "bg-gradient-to-r from-black/50 via-black/30 to-black/50 backdrop-blur-md"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -37,7 +37,7 @@ const Navbar = () => {
             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-400 to-pink-600 flex items-center justify-center text-white text-xl font-bold shadow-md hover:scale-110 transition-transform duration-300">
               ✨
             </div>
-            <h1 className="text-2xl font-bold tracking-wide">
+            <h1 className={`text-2xl font-bold tracking-wide ${scrolled ? "text-gray-800" : "text-white"}`}>
               Glamour <span className="text-pink-500">Haven</span>
             </h1>
           </div>
@@ -50,7 +50,9 @@ const Navbar = () => {
                 href={link.href}
                 onClick={() => setActive(link.href)}
                 className={`relative group font-medium transition ${
-                  active === link.href ? "text-pink-500" : "text-gray-700"
+                  active === link.href 
+                    ? "text-pink-500" 
+                    : scrolled ? "text-gray-700" : "text-white/90"
                 }`}
               >
                 {link.label}
@@ -62,7 +64,9 @@ const Navbar = () => {
           {/* CTA Button */}
           <a
             href="#booking"
-            className="hidden md:block px-5 py-2 rounded-full bg-pink-500 text-white font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+            className={`hidden md:block px-5 py-2 rounded-full bg-pink-500 text-white font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ${
+              !scrolled && "shadow-black/20"
+            }`}
           >
             Book Now
           </a>
@@ -73,9 +77,9 @@ const Navbar = () => {
             className="md:hidden focus:outline-none"
           >
             <div className="space-y-1">
-              <span className="block w-6 h-0.5 bg-gray-800"></span>
-              <span className="block w-6 h-0.5 bg-gray-800"></span>
-              <span className="block w-6 h-0.5 bg-gray-800"></span>
+              <span className={`block w-6 h-0.5 ${scrolled ? "bg-gray-800" : "bg-white"}`}></span>
+              <span className={`block w-6 h-0.5 ${scrolled ? "bg-gray-800" : "bg-white"}`}></span>
+              <span className={`block w-6 h-0.5 ${scrolled ? "bg-gray-800" : "bg-white"}`}></span>
             </div>
           </button>
         </div>
@@ -96,7 +100,7 @@ const Navbar = () => {
                   setIsMenuOpen(false);
                 }}
                 className={`text-lg font-medium transition ${
-                  active === link.href ? "text-pink-500" : "text-gray-700"
+                  active === link.href ? "text-pink-500" : "text-white/90"
                 } hover:text-pink-500`}
               >
                 {link.label}

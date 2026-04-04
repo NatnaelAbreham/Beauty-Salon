@@ -1,163 +1,424 @@
-import React, { useEffect, useState } from "react";
+// src/components/Services.jsx
+import React, { useEffect, useRef, useState } from "react";
 
-const Hero = () => {
-  const [loaded, setLoaded] = useState(false);
+const Services = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   useEffect(() => {
-    setLoaded(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
+
+  const services = [
+    {
+      id: 1,
+      icon: "💇‍♀️",
+      title: "Luxury Hair Styling",
+      description:
+        "Precision cuts, expert coloring, and transformative styling for every hair type",
+      price: "From $85",
+      originalPrice: "$120",
+      image:
+        "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=500&fit=crop",
+      popular: true,
+      duration: "60-90 min",
+      gradient: "from-pink-500 to-rose-500",
+      features: ["Expert Stylists", "Premium Products", "Complimentary Drink"],
+    },
+    {
+      id: 2,
+      icon: "💅",
+      title: "Manicure & Pedicure",
+      description:
+        "Pampering hand and foot treatments with premium gels and relaxing massage",
+      price: "From $65",
+      originalPrice: "$90",
+      image:
+        "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=600&h=500&fit=crop",
+      popular: true,
+      duration: "75 min",
+      gradient: "from-purple-500 to-pink-500",
+      features: ["Paraffin Treatment", "Hot Stone Massage", "Long-lasting Gel"],
+    },
+    {
+      id: 3,
+      icon: "💆‍♀️",
+      title: "Spa Facial",
+      description:
+        "Rejuvenating facials customized for your skin type with organic ingredients",
+      price: "From $95",
+      originalPrice: "$130",
+      image:
+        "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=500&fit=crop",
+      popular: true,
+      duration: "60 min",
+      gradient: "from-teal-500 to-emerald-500",
+      features: ["Deep Cleansing", "Anti-aging Mask", "Face Massage"],
+    },
+    {
+      id: 4,
+      icon: "💄",
+      title: "Makeup Artistry",
+      description:
+        "Flawless makeup application for any occasion using luxury brands",
+      price: "From $75",
+      originalPrice: "$110",
+      image:
+        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=500&fit=crop",
+      popular: false,
+      duration: "45-60 min",
+      gradient: "from-orange-500 to-pink-500",
+      features: ["Airbrush Option", "Lash Application", "Touch-up Kit"],
+    },
+    {
+      id: 5,
+      icon: "✂️",
+      title: "Hair Treatment",
+      description:
+        "Restorative hair treatments for damaged, dry, or color-treated hair",
+      price: "From $55",
+      originalPrice: "$80",
+      image:
+        "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&h=500&fit=crop",
+      popular: false,
+      duration: "45 min",
+      gradient: "from-blue-500 to-cyan-500",
+      features: ["Keratin Boost", "Scalp Massage", "Heat Protection"],
+    },
+    {
+      id: 6,
+      icon: "👰",
+      title: "Bridal Package",
+      description:
+        "Complete bridal transformation including trial session and day-of service",
+      price: "From $350",
+      originalPrice: "$500",
+      image:
+        "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=500&fit=crop",
+      popular: true,
+      duration: "3-4 hours",
+      gradient: "from-red-500 to-pink-500",
+      features: ["Trial Session", "Group Discount", "Champagne Service"],
+    },
+    {
+      id: 7,
+      icon: "🌿",
+      title: "Body Treatment",
+      description:
+        "Exfoliating scrubs and hydrating wraps for silky smooth skin",
+      price: "From $120",
+      originalPrice: "$160",
+      image:
+        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&h=500&fit=crop",
+      popular: false,
+      duration: "90 min",
+      gradient: "from-green-500 to-teal-500",
+      features: ["Full Body Scrub", "Hydrating Wrap", "Aromatherapy"],
+    },
+    {
+      id: 8,
+      icon: "👑",
+      title: "VIP Experience",
+      description:
+        "Ultimate luxury package with premium services and private suite",
+      price: "From $499",
+      originalPrice: "$750",
+      image:
+        "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&h=500&fit=crop",
+      popular: true,
+      duration: "Half-day",
+      gradient: "from-yellow-500 to-red-500",
+      features: ["Private Suite", "Champagne Bar", "Personal Assistant"],
+    },
+  ];
 
   return (
     <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      id="services"
+      className="py-24 bg-gradient-to-br from-gray-50 via-white to-pink-50 relative overflow-hidden"
+      ref={sectionRef}
     >
-      {/* Sharp Background Image with Soft Beauty-Focused Gradient Overlay */}
-      <div className="absolute inset-0 z-0">
-        {/* Multi-layer gradient for better text readability and beauty vibe */}
-        <div className="absolute inset-0 bg-gradient-to-r from-rose-900/60 via-purple-900/40 to-pink-900/60 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-gray-950/20 to-transparent z-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-rose-500/10 via-transparent to-amber-500/10 z-10" />
-
-        {/* New Beauty Salon Image - Woman getting hair treatment in luxurious salon */}
-        <img
-          src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=2070&auto=format"
-          alt="Luxury Beauty Salon - Hair treatment"
-          className="w-full h-full object-cover scale-105"
-          style={{ filter: "brightness(0.85) contrast(1.08) saturate(1.1)" }}
-        />
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
-      {/* Decorative Elements - Beauty inspired */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-pink-400/10 rounded-full blur-3xl pointer-events-none z-10 animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none z-10" />
-      <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-rose-500/5 rounded-full blur-2xl pointer-events-none z-10" />
-
-      {/* Floating beauty elements - subtle sparkles */}
-      <div className="absolute top-1/4 right-1/4 text-2xl opacity-20 animate-ping z-10 pointer-events-none">
-        ✨
-      </div>
-      <div className="absolute bottom-1/3 left-1/4 text-xl opacity-10 animate-bounce z-10 pointer-events-none delay-1000">
-        💫
+      {/* Decorative Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff6b8b' fill-opacity='0.15'%3E%3Cpath d='M40 20 L45 35 L60 35 L48 45 L52 60 L40 50 L28 60 L32 45 L20 35 L35 35 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundRepeat: "repeat",
+          }}
+        ></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-20 w-full">
-        <div className="max-w-3xl mx-auto text-center">
-          <div
-            className={`transition-all duration-1000 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}
-          >
-            {/* Premium Badge - Beauty Salon */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2.5 mb-6 shadow-lg hover:bg-white/15 transition-all duration-300">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-400"></span>
-              </span>
-              <span className="text-white/90 text-sm font-medium tracking-wide">
-                ✨ PREMIUM BEAUTY SALON • SINCE 2014 ✨
-              </span>
-            </div>
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        {/* Header Section */}
+        <div
+          className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+        >
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-100 to-purple-100 rounded-full px-6 py-2 mb-6 shadow-sm">
+            <span className="text-2xl">✨</span>
+            <span className="text-pink-600 font-semibold text-sm uppercase tracking-wider">
+              Premium Services
+            </span>
+            <span className="text-2xl">✨</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            Indulge in Luxury
+          </h2>
+          <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
+            Experience our curated collection of premium beauty treatments,
+            designed to rejuvenate, transform, and celebrate your unique beauty
+          </p>
+        </div>
 
-            {/* Main Heading - More beauty focused */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight mb-6">
-              <span className="text-white drop-shadow-2xl">Where Beauty</span>
-              <br />
-              <span className="bg-gradient-to-r from-pink-300 via-rose-300 to-amber-300 bg-clip-text text-transparent">
-                Meets Elegance
-              </span>
-            </h1>
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, index) => (
+            <div
+              key={service.id}
+              className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
+                isVisible ? "animate-fadeInUp" : "opacity-0"
+              }`}
+              style={{ animationDelay: `${index * 100}ms` }}
+              onMouseEnter={() => setHoveredCard(service.id)}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              {/* Image Container */}
+              <div className="relative h-64 overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
 
-            {/* Description - More engaging */}
-            <p className="text-gray-100 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-lg font-light">
-              Experience transformative beauty treatments in a sanctuary of
-              luxury. From rejuvenating facials to expert hair styling — we make
-              you feel radiant.
-            </p>
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-            {/* CTA Buttons - Refined styling */}
-            <div className="flex gap-5 flex-wrap justify-center mb-16">
-              <a
-                href="#booking"
-                className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold shadow-2xl shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-500 hover:scale-105 overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Book Your Escape <span className="text-lg">→</span>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-rose-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </a>
-              <a
-                href="#services"
-                className="px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold backdrop-blur-sm hover:bg-white/10 hover:border-white/50 transition-all duration-300 hover:scale-105"
-              >
-                Discover Services
-              </a>
-            </div>
-
-            {/* Stats with Beauty-Focused Icons and Modern Cards */}
-            <div className="flex flex-wrap justify-center gap-8 md:gap-12">
-              {[
-                {
-                  value: "5,000+",
-                  label: "Happy Clients",
-                  icon: "💖",
-                  desc: "Loyal beauties",
-                },
-                {
-                  value: "35+",
-                  label: "Expert Artists",
-                  icon: "💇‍♀️",
-                  desc: "Certified pros",
-                },
-                {
-                  value: "12+",
-                  label: "Years of Radiance",
-                  icon: "✨",
-                  desc: "Excellence since 2012",
-                },
-                {
-                  value: "100%",
-                  label: "Natural Products",
-                  icon: "🌿",
-                  desc: "Clean beauty",
-                },
-              ].map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="group backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl px-5 py-3 min-w-[120px] hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:border-pink-400/30"
-                >
-                  <div className="flex items-center justify-center gap-2">
-                    <span className="text-2xl group-hover:scale-110 transition-transform duration-300">
-                      {stat.icon}
-                    </span>
-                    <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-pink-200 to-rose-200 bg-clip-text text-transparent">
-                      {stat.value}
-                    </h3>
+                {/* Popular Badge */}
+                {service.popular && (
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg animate-pulse">
+                    ⭐ Most Popular
                   </div>
-                  <p className="text-gray-200 text-sm mt-1 font-medium">
-                    {stat.label}
-                  </p>
-                  <p className="text-gray-400 text-xs mt-0.5">{stat.desc}</p>
-                </div>
-              ))}
-            </div>
+                )}
 
-            {/* Elegant Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-white/50 text-xs tracking-wider">
-                  SCROLL
-                </span>
-                <div className="w-5 h-8 border-2 border-white/30 rounded-full flex justify-center">
-                  <div className="w-1 h-2 bg-white/50 rounded-full mt-1.5 animate-pulse" />
+                {/* Duration Badge */}
+                <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs">
+                  ⏱️ {service.duration}
                 </div>
               </div>
+
+              {/* Content */}
+              <div className="p-6 relative">
+                {/* Icon */}
+                <div className="absolute -top-6 left-6 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl flex items-center justify-center text-2xl shadow-lg transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                  {service.icon}
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold mb-2 mt-2 group-hover:text-pink-600 transition-colors">
+                  {service.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                  {service.description}
+                </p>
+
+                {/* Features */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {service.features.map((feature, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xs bg-pink-50 text-pink-600 px-2 py-1 rounded-full"
+                    >
+                      ✓ {feature}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Price */}
+                <div className="flex items-baseline gap-2 mb-4">
+                  <span className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                    {service.price}
+                  </span>
+                  <span className="text-gray-400 line-through text-sm">
+                    {service.originalPrice}
+                  </span>
+                </div>
+
+                {/* Book Now Button */}
+                <button className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                  <span>Book Now</span>
+                  <span className="transform group-hover/btn:translate-x-1 transition-transform">
+                    →
+                  </span>
+                </button>
+              </div>
+
+              {/* Hover Border Effect */}
+              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-pink-200 transition-all duration-300 pointer-events-none"></div>
+            </div>
+          ))}
+        </div>
+
+        {/* Call to Action */}
+        <div
+          className={`text-center mt-16 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+        >
+          <div className="inline-flex flex-col sm:flex-row gap-4">
+            <a
+              href="#booking"
+              className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center gap-2 group"
+            >
+              View Full Service Menu
+              <span className="transform group-hover:translate-x-1 transition-transform">
+                →
+              </span>
+            </a>
+            <a
+              href="#contact"
+              className="px-8 py-4 border-2 border-pink-300 text-pink-600 rounded-full font-semibold hover:bg-pink-50 hover:border-pink-400 transition-all duration-300 inline-flex items-center gap-2"
+            >
+              Request Consultation
+              <span>💬</span>
+            </a>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-gray-500">
+            <div className="flex items-center gap-2">
+              <span className="text-green-500">✓</span> 5000+ Happy Clients
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-green-500">✓</span> 100% Satisfaction
+              Guarantee
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-green-500">✓</span> Premium Products Used
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-green-500">✓</span> Certified Experts
             </div>
           </div>
         </div>
       </div>
+
+      {/* Add these styles to your global CSS or Tailwind config */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+
+        .animate-fadeInUp {
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </section>
   );
 };
 
-export default Hero;
+export default Services;
+
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      animation: {
+        fadeInUp: "fadeInUp 0.6s ease-out forwards",
+        blob: "blob 7s infinite",
+      },
+      keyframes: {
+        fadeInUp: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(30px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        blob: {
+          "0%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+          "33%": {
+            transform: "translate(30px, -50px) scale(1.1)",
+          },
+          "66%": {
+            transform: "translate(-20px, 20px) scale(0.9)",
+          },
+          "100%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+        },
+      },
+    },
+  },
+};
