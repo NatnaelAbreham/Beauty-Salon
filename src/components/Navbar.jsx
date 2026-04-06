@@ -22,7 +22,7 @@ const Navbar = () => {
   { href: "#gallery", label: "Gallery" },
   { href: "#testimonials", label: "Testimonials" },
   { href: "#contact", label: "Contact" },
-];justment
+];
 
   // Smooth scroll function
   const handleSmoothScroll = (e, href) => {
