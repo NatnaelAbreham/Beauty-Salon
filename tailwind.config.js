@@ -6,6 +6,7 @@ module.exports = {
         fadeInUp: "fadeInUp 0.6s ease-out forwards",
         blob: "blob 7s infinite",
       },
+      
       keyframes: {
         fadeInUp: {
           "0%": {

@@ -11,6 +11,9 @@ import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
 
+
+
+
 function App() {
   const [showBackToTop, setShowBackToTop] = useState(false)
 
