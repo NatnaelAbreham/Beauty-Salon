@@ -7,12 +7,12 @@ const Contact = () => {
   const [rightRef, rightVisible] = useScrollAnimation();
   const [formStatus, setFormStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   // For 3D tilt effect on form
   const formRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
+
   const handleMouseMove = (e) => {
     if (!formRef.current) return;
     const rect = formRef.current.getBoundingClientRect();
@@ -21,12 +21,12 @@ const Contact = () => {
     mouseX.set(x * 20);
     mouseY.set(y * 20);
   };
-  
+
   const handleMouseLeave = () => {
     animate(mouseX, 0, { duration: 0.5 });
     animate(mouseY, 0, { duration: 0.5 });
   };
-  
+
   const formRotateX = useMotionTemplate`${mouseY}deg`;
   const formRotateY = useMotionTemplate`${mouseX}deg`;
 
@@ -67,14 +67,14 @@ const Contact = () => {
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     setFormStatus('success');
     setIsSubmitting(false);
     e.target.reset();
-    
+
     setTimeout(() => setFormStatus(null), 5000);
   };
 
@@ -99,14 +99,14 @@ const Contact = () => {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full blur-3xl opacity-20 animate-pulse" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl opacity-20 animate-pulse delay-1000" />
-       <div
-  className="absolute top-1/2 left-1/2 w-full h-full opacity-20"
-  style={{
-    transform: 'translate(-50%, -50%)',
-    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%239C92AC' fillOpacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-  }}
-></div>
-         </div>
+        <div
+          className="absolute top-1/2 left-1/2 w-full h-full opacity-20"
+          style={{
+            transform: 'translate(-50%, -50%)',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%239C92AC' fillOpacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
+      </div>
 
       <div className="container relative z-10 mx-auto px-4 md:px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -147,7 +147,7 @@ const Contact = () => {
                 transition={{ delay: 0.5 }}
                 className="text-gray-300 text-lg leading-relaxed"
               >
-                Have questions? We'd love to hear from you. Send us a message 
+                Have questions? We'd love to hear from you. Send us a message
                 and we'll respond as soon as possible.
               </motion.p>
             </div>
@@ -223,7 +223,7 @@ const Contact = () => {
             >
               {/* Gradient border effect */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse" />
-              
+
               <form
                 onSubmit={handleContactSubmit}
                 className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl"
@@ -260,7 +260,7 @@ const Contact = () => {
                         />
                       </motion.div>
                     ))}
-                    
+
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={rightVisible ? { opacity: 1, y: 0 } : {}}
