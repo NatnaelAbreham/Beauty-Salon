@@ -186,9 +186,14 @@ const Services = () => {
             </span>
             <span className="text-2xl">✨</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+         {/*  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            Indulge in Luxury
+          </h2> */}
+
+          <h2 className="text-5xl md:text-6xl font-light tracking-tight bg-gradient-to-r from-gray-800 via-rose-600 to-gray-800 bg-clip-text text-transparent">
             Indulge in Luxury
           </h2>
+<br />
           <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
             Experience our curated collection of premium beauty treatments,
             designed to rejuvenate, transform, and celebrate your unique beauty
@@ -235,9 +240,9 @@ const Services = () => {
               {/* Content */}
               <div className="p-6 relative">
                 {/* Icon */}
-                <div className="absolute -top-6 left-6 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl flex items-center justify-center text-2xl shadow-lg transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                {/* <div className="absolute -top-6 left-6 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl flex items-center justify-center text-2xl shadow-lg transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                   {service.icon}
-                </div>
+                </div> */}
 
                 {/* Title */}
                 <h3 className="text-xl font-bold mb-2 mt-2 group-hover:text-pink-600 transition-colors">
@@ -272,12 +277,19 @@ const Services = () => {
                 </div>
 
                 {/* Book Now Button */}
-                <button className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                {/* <button className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
                   <span>Book Now</span>
                   <span className="transform group-hover/btn:translate-x-1 transition-transform">
                     →
                   </span>
-                </button>
+                </button> */}
+
+                <button className="w-full py-3 bg-pink-500 text-white rounded-xl font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+  <span>Book Now</span>
+  <span className="transform group-hover/btn:translate-x-1 transition-transform">
+    →
+  </span>
+</button>
               </div>
 
               {/* Hover Border Effect */}

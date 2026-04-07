@@ -107,6 +107,7 @@ const Hero = () => {
       ref={heroRef}
       onMouseMove={handleMouseMove}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
+      id = "home"
     >
       {/* Custom cursor for desktop */}
       <motion.div

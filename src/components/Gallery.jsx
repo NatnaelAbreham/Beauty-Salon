@@ -153,9 +153,12 @@ const Gallery = () => {
             </span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-pink-600 via-purple-600 to-rose-600 text-transparent bg-clip-text">
+          {/* <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-pink-600 via-purple-600 to-rose-600 text-transparent bg-clip-text">
             Beauty Gallery
-          </h2>
+          </h2> */}
+           <h2 className="text-5xl md:text-6xl font-light tracking-tight bg-gradient-to-r from-gray-800 via-rose-600 to-gray-800 bg-clip-text text-transparent">
+            Beauty Gallery
+          </h2><br />
 
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Discover our latest transformations and premium beauty services

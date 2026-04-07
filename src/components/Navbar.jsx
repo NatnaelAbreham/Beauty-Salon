@@ -42,8 +42,8 @@ const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
         className={`fixed w-full z-50 transition-all duration-500 ${scrolled
-            ? "bg-white/80 backdrop-blur-xl shadow-lg border-b border-white/20"
-            : "bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-md border-b border-white/10"
+          ? "bg-white/80 backdrop-blur-xl shadow-lg border-b border-white/20"
+          : "bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-md border-b border-white/10"
           }`}
         style={{ height: scrolled ? "70px" : "80px" }}
       >
@@ -76,27 +76,37 @@ const Navbar = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
+              {/* Icon Circle with subtle rotation and soft glow */}
               <motion.div
-                className="relative w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold shadow-lg"
-                whileHover={{ rotate: 360 }}
+                className="relative w-10 h-10 rounded-full bg-gradient-to-r from-[#ff809c] via-[#ffb0c1] to-purple-600 flex items-center justify-center text-white text-xl font-bold shadow-lg"
+                whileHover={{ rotate: 15 }}
                 transition={{ duration: 0.6, type: "spring" }}
               >
-                <span>✨</span>
-                {/* Pulsing ring */}
+                <span>💎</span> {/* Replaced sparkle with subtle diamond icon for elegance */}
+
+                {/* Soft pulsing ring */}
                 <motion.div
-                  className="absolute inset-0 rounded-full border-2 border-pink-400"
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute inset-0 rounded-full border-2 border-[#ff809c]"
+                  animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0, 0.4] }}
+                  transition={{ duration: 3, repeat: Infinity }}
                 />
               </motion.div>
 
+              {/* Logo Text */}
               <div className="flex flex-col">
-                <h1 className={`text-xl md:text-2xl font-bold tracking-tight leading-tight ${scrolled ? "text-gray-800" : "text-white"
-                  }`}>
-                  Glamour <span className="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">Haven</span>
+                <h1
+                  className={`text-xl md:text-2xl font-bold tracking-tight leading-tight ${scrolled ? "text-gray-800" : "text-white"
+                    }`}
+                >
+                  Glamour{" "}
+                  <span className="bg-gradient-to-r from-[#ff809c] via-[#ffb0c1] to-purple-600 bg-clip-text text-transparent">
+                    Haven
+                  </span>
                 </h1>
-                <p className={`text-[10px] tracking-wider ${scrolled ? "text-gray-500" : "text-white/60"
-                  }`}>
+                <p
+                  className={`text-[10px] tracking-wider ${scrolled ? "text-gray-500" : "text-white/60"
+                    }`}
+                >
                   LUXURY BEAUTY SALON
                 </p>
               </div>
@@ -120,10 +130,10 @@ const Navbar = () => {
                       {link.icon}
                     </span>
                     <span className={`font-medium transition-colors duration-300 ${active === link.href
-                        ? "text-pink-500"
-                        : scrolled
-                          ? "text-gray-700 hover:text-pink-500"
-                          : "text-white/90 hover:text-white"
+                      ? "text-pink-500"
+                      : scrolled
+                        ? "text-gray-700 hover:text-pink-500"
+                        : "text-white/90 hover:text-white"
                       }`}>
                       {link.label}
                     </span>
@@ -261,8 +271,8 @@ const Navbar = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                       className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 ${active === link.href
-                          ? "bg-gradient-to-r from-pink-500/10 to-purple-500/10 text-pink-600"
-                          : "text-gray-700 hover:bg-pink-50"
+                        ? "bg-gradient-to-r from-pink-500/10 to-purple-500/10 text-pink-600"
+                        : "text-gray-700 hover:bg-pink-50"
                         }`}
                     >
                       <span className="text-2xl">{link.icon}</span>
