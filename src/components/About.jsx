@@ -53,9 +53,10 @@ const About = () => {
             }`}
           >
             <span className="text-pink-500 font-semibold uppercase tracking-wider">About Us</span>
-            <h2 className="text-4xl md:text-5xl font-extrabold mt-4 mb-6 text-gray-800">
-              Your Journey to Beauty Starts Here
+            <h2 className="text-5xl md:text-6xl font-light tracking-tight bg-gradient-to-r from-gray-800 via-rose-600 to-gray-800 bg-clip-text text-transparent">
+            Your Journey to Beauty Starts Here
             </h2>
+            
             <p className="text-gray-600 mb-4 text-lg leading-relaxed">
               Founded in 2015, Glamour Haven has been redefining beauty with a perfect blend of tradition and modern innovation. 
               Our mission is to make every client feel confident and radiant.

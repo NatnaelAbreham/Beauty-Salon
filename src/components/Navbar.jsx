@@ -16,13 +16,13 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#services", label: "Services" },
-  { href: "#about", label: "About" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#contact", label: "Contact" },
-];
+    { href: "#home", label: "Home" },
+    { href: "#services", label: "Services" },
+    { href: "#about", label: "About" },
+    { href: "#gallery", label: "Gallery" },
+    { href: "#testimonials", label: "Testimonials" },
+    { href: "#contact", label: "Contact" },
+  ];
 
   // Smooth scroll function
   const handleSmoothScroll = (e, href) => {
@@ -41,11 +41,10 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-        className={`fixed w-full z-50 transition-all duration-500 ${
-          scrolled
+        className={`fixed w-full z-50 transition-all duration-500 ${scrolled
             ? "bg-white/80 backdrop-blur-xl shadow-lg border-b border-white/20"
             : "bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-md border-b border-white/10"
-        }`}
+          }`}
         style={{ height: scrolled ? "70px" : "80px" }}
       >
         {/* Animated gradient background on scroll */}
@@ -90,16 +89,14 @@ const Navbar = () => {
                   transition={{ duration: 2, repeat: Infinity }}
                 />
               </motion.div>
-              
+
               <div className="flex flex-col">
-                <h1 className={`text-xl md:text-2xl font-bold tracking-tight leading-tight ${
-                  scrolled ? "text-gray-800" : "text-white"
-                }`}>
+                <h1 className={`text-xl md:text-2xl font-bold tracking-tight leading-tight ${scrolled ? "text-gray-800" : "text-white"
+                  }`}>
                   Glamour <span className="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">Haven</span>
                 </h1>
-                <p className={`text-[10px] tracking-wider ${
-                  scrolled ? "text-gray-500" : "text-white/60"
-                }`}>
+                <p className={`text-[10px] tracking-wider ${scrolled ? "text-gray-500" : "text-white/60"
+                  }`}>
                   LUXURY BEAUTY SALON
                 </p>
               </div>
@@ -122,17 +119,16 @@ const Navbar = () => {
                     <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity">
                       {link.icon}
                     </span>
-                    <span className={`font-medium transition-colors duration-300 ${
-                      active === link.href 
-                        ? "text-pink-500" 
-                        : scrolled 
-                          ? "text-gray-700 hover:text-pink-500" 
+                    <span className={`font-medium transition-colors duration-300 ${active === link.href
+                        ? "text-pink-500"
+                        : scrolled
+                          ? "text-gray-700 hover:text-pink-500"
                           : "text-white/90 hover:text-white"
-                    }`}>
+                      }`}>
                       {link.label}
                     </span>
                   </div>
-                  
+
                   {/* Active indicator */}
                   {active === link.href && (
                     <motion.div
@@ -141,7 +137,7 @@ const Navbar = () => {
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
-                  
+
                   {/* Hover indicator */}
                   {hoveredLink === link.href && active !== link.href && (
                     <motion.div
@@ -163,18 +159,23 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative px-6 py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium shadow-md overflow-hidden">
+              {/* Subtle glow for navbar depth */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#ff809c]/30 to-[#ff92ad]/30 rounded-full blur-sm transition-opacity duration-300 group-hover:opacity-50" />
+
+              {/* Main button */}
+              <div className="relative px-6 py-2.5 rounded-full bg-[#ff809c] text-white font-semibold shadow-md overflow-hidden">
                 <span className="relative z-10 flex items-center gap-2">
                   Book Now
                   <motion.span
-                    animate={{ x: [0, 3, 0] }}
+                    animate={{ x: [0, 2, 0] }}
                     transition={{ duration: 1, repeat: Infinity }}
                   >
                     →
                   </motion.span>
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* Tiny hover shine */}
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full" />
               </div>
             </motion.a>
 
@@ -189,23 +190,20 @@ const Navbar = () => {
                   <motion.span
                     animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`block w-6 h-0.5 rounded-full ${
-                      scrolled ? "bg-gray-800" : "bg-white"
-                    }`}
+                    className={`block w-6 h-0.5 rounded-full ${scrolled ? "bg-gray-800" : "bg-white"
+                      }`}
                   />
                   <motion.span
                     animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
                     transition={{ duration: 0.3 }}
-                    className={`block w-6 h-0.5 rounded-full ${
-                      scrolled ? "bg-gray-800" : "bg-white"
-                    }`}
+                    className={`block w-6 h-0.5 rounded-full ${scrolled ? "bg-gray-800" : "bg-white"
+                      }`}
                   />
                   <motion.span
                     animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`block w-6 h-0.5 rounded-full ${
-                      scrolled ? "bg-gray-800" : "bg-white"
-                    }`}
+                    className={`block w-6 h-0.5 rounded-full ${scrolled ? "bg-gray-800" : "bg-white"
+                      }`}
                   />
                 </div>
               </div>
@@ -226,7 +224,7 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(false)}
               className="fixed inset-0 bg-black/60 backdrop-blur-md z-40 md:hidden"
             />
-            
+
             {/* Menu Panel */}
             <motion.div
               initial={{ x: "100%" }}
@@ -237,7 +235,7 @@ const Navbar = () => {
             >
               {/* Decorative top gradient */}
               <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-pink-100 to-transparent" />
-              
+
               {/* Mobile Menu Header */}
               <div className="relative p-6 pt-20">
                 <div className="flex items-center justify-between mb-8">
@@ -262,11 +260,10 @@ const Navbar = () => {
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
-                      className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 ${
-                        active === link.href
+                      className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 ${active === link.href
                           ? "bg-gradient-to-r from-pink-500/10 to-purple-500/10 text-pink-600"
                           : "text-gray-700 hover:bg-pink-50"
-                      }`}
+                        }`}
                     >
                       <span className="text-2xl">{link.icon}</span>
                       <span className="font-medium text-lg">{link.label}</span>
@@ -297,24 +294,24 @@ const Navbar = () => {
                     ✨ 5-Star Rated • 15,000+ Happy Clients ✨
                   </p>
                   <div className="flex justify-center gap-4 mt-4">
-  <motion.a
-    href="#"
-    whileHover={{ y: -3 }}
-    className="w-10 h-10 rounded-full bg-pink-100"
-  />
-  
-  <motion.a
-    href="#"
-    whileHover={{ y: -3 }}
-    className="w-10 h-10 rounded-full bg-pink-100"
-  />
-  
-  <motion.a
-    href="#"
-    whileHover={{ y: -3 }}
-    className="w-10 h-10 rounded-full bg-pink-100"
-  />
-</div>
+                    <motion.a
+                      href="#"
+                      whileHover={{ y: -3 }}
+                      className="w-10 h-10 rounded-full bg-pink-100"
+                    />
+
+                    <motion.a
+                      href="#"
+                      whileHover={{ y: -3 }}
+                      className="w-10 h-10 rounded-full bg-pink-100"
+                    />
+
+                    <motion.a
+                      href="#"
+                      whileHover={{ y: -3 }}
+                      className="w-10 h-10 rounded-full bg-pink-100"
+                    />
+                  </div>
                 </div>
               </div>
             </motion.div>

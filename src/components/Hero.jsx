@@ -238,7 +238,7 @@ const Hero = () => {
             {/* Main Heading with split text effect */}
             <div className="space-y-2 mb-6">
               <motion.h1 
-                className="text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight"
+                className="text-5xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight"
                 initial={{ opacity: 0 }}
                 animate={loaded ? { opacity: 1 } : {}}
                 transition={{ delay: 0.3 }}
@@ -248,8 +248,10 @@ const Hero = () => {
                 <span className="bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
                   Beauty Meets
                 </span>
+ 
                 <br />
                 <span className="text-white drop-shadow-2xl">Artistry</span>
+                
               </motion.h1>
               
               <motion.div
@@ -272,40 +274,48 @@ const Hero = () => {
             </motion.p>
 
             {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={loaded ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.5 }}
-              className="flex gap-5 flex-wrap mb-16"
-            >
-              <motion.a
-                href="#booking"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative px-10 py-4 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 text-white font-semibold shadow-2xl shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-500 overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Book Your Experience 
-                  <motion.span 
-                    className="text-lg"
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  >
-                    →
-                  </motion.span>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </motion.a>
-              
-              <motion.a
-                href="#services"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 rounded-full border-2 border-white/30 text-white font-semibold backdrop-blur-sm hover:bg-white/10 hover:border-white/50 transition-all duration-300"
-              >
-                Explore Services
-              </motion.a>
-            </motion.div>
+           {/* CTA Buttons */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={loaded ? { opacity: 1, y: 0 } : {}}
+  transition={{ delay: 0.5 }}
+  className="flex gap-5 flex-wrap mb-16"
+>
+  {/* Primary Button */}
+  <motion.a
+    href="#booking"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="group relative px-10 py-4 rounded-full bg-pink-500 text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+  >
+    <span className="relative z-10 flex items-center gap-2">
+      Book Your Experience 
+      <motion.span 
+        className="text-lg"
+        animate={{ x: [0, 5, 0] }}
+        transition={{ duration: 1, repeat: Infinity }}
+      >
+        →
+      </motion.span>
+    </span>
+    {/* Optional shine effect on hover */}
+    <div className="absolute inset-0 bg-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
+  </motion.a>
+  
+  {/* Secondary Button */}
+  <motion.a
+    href="#services"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="px-10 py-4 rounded-full border-2 border-white/30 text-white font-semibold backdrop-blur-sm hover:bg-white/10 hover:border-white/50 transition-all duration-300"
+  >
+    Explore Services
+  </motion.a>
+</motion.div>
+
+
+
+
 
             {/* Trust Badges */}
             <motion.div
