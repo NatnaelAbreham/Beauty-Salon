@@ -5,7 +5,6 @@ const Services = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [showFullMenu, setShowFullMenu] = useState(false); // ADD THIS STATE
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -151,9 +150,6 @@ const Services = () => {
     },
   ];
 
-  // ADD THIS - Determine which services to show
-  const displayedServices = showFullMenu ? services : services.slice(0, 4);
-
   return (
     <section
       id="services"
@@ -190,20 +186,23 @@ const Services = () => {
             </span>
             <span className="text-2xl">✨</span>
           </div>
+         {/*  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            Indulge in Luxury
+          </h2> */}
 
           <h2 className="text-5xl md:text-6xl font-light tracking-tight bg-gradient-to-r from-gray-800 via-rose-600 to-gray-800 bg-clip-text text-transparent">
             Indulge in Luxury
           </h2>
-          <br />
+<br />
           <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
             Experience our curated collection of premium beauty treatments,
             designed to rejuvenate, transform, and celebrate your unique beauty
           </p>
         </div>
 
-        {/* Services Grid - CHANGED services.map to displayedServices.map */}
+        {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {displayedServices.map((service, index) => (
+          {services.map((service, index) => (
             <div
               key={service.id}
               className={`group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
@@ -240,6 +239,11 @@ const Services = () => {
 
               {/* Content */}
               <div className="p-6 relative">
+                {/* Icon */}
+                {/* <div className="absolute -top-6 left-6 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl flex items-center justify-center text-2xl shadow-lg transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                  {service.icon}
+                </div> */}
+
                 {/* Title */}
                 <h3 className="text-xl font-bold mb-2 mt-2 group-hover:text-pink-600 transition-colors">
                   {service.title}
@@ -273,12 +277,19 @@ const Services = () => {
                 </div>
 
                 {/* Book Now Button */}
-                <button className="w-full py-3 bg-pink-500 text-white rounded-xl font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                {/* <button className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
                   <span>Book Now</span>
                   <span className="transform group-hover/btn:translate-x-1 transition-transform">
                     →
                   </span>
-                </button>
+                </button> */}
+
+                <button className="w-full py-3 bg-pink-500 text-white rounded-xl font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+  <span>Book Now</span>
+  <span className="transform group-hover/btn:translate-x-1 transition-transform">
+    →
+  </span>
+</button>
               </div>
 
               {/* Hover Border Effect */}
@@ -292,16 +303,16 @@ const Services = () => {
           className={`text-center mt-16 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <div className="inline-flex flex-col sm:flex-row gap-4">
-            {/* CHANGED: Replaced <a> with <button> and added onClick handler */}
-            <button
-              onClick={() => setShowFullMenu(!showFullMenu)}
+            {/* <a
+              href="#booking"
               className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center gap-2 group"
             >
-              {showFullMenu ? "Show Less Services" : "View Full Service Menu"}
+              View Full Service Menu
               <span className="transform group-hover:translate-x-1 transition-transform">
-                {showFullMenu ? "↑" : "→"}
+                →
               </span>
-            </button>
+            </a> */}
+
             
             <a
               href="#contact"
